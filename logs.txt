@@ -1,0 +1,12 @@
+Version #1:
+
+References: 
+https://wordpress.stackexchange.com/questions/48329/how-to-structure-a-plugin
+https://codex.wordpress.org/Writing_a_Plugin
+https://gist.github.com/Xeoncross/9552088
+https://developer.wordpress.org/themes/basics/including-css-javascript/
+https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts
+https://code.tutsplus.com/articles/how-to-include-javascript-and-css-in-your-wordpress-themes-and-plugins--wp-24321
+https://www.dummies.com/web-design-development/wordpress/enhance-wordpress-plugins-css-javascript/
+
+https://code.tutsplus.com/tutorials/create-a-custom-wordpress-plugin-from-scratch--net-2668

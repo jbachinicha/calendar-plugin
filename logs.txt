@@ -15,6 +15,7 @@ Shortcode
 https://www.inkthemes.com/learn-how-to-create-shortcodes-in-wordpress-plugin-with-examples/
 
 Calendar
+https://code.tutsplus.com/tutorials/how-to-build-a-beautiful-calendar-widget--net-12538
 https://codepen.io/ankithingarajiya/pen/jQBWEz?page=2
 https://codepen.io/SSTWebmaster/pen/QPRZwE?&page=1
 https://codepen.io/collection/wvhHK/#

@@ -1,155 +1,158 @@
-<?php
-/* Dynamic Static */
-    class Calendar {
+var Cal = function(divId) {
 
-            
-        private $dayLabels = array("Mon","Tue","Wed","Thu","Fri","Sat","Sun");         
-        private $currentYear=0;         
-        private $currentMonth=0;        
-        private $currentDay=0;        
-        private $currentDate=null;         
-        private $daysInMonth=0;         
-        private $naviHref= null;
-
-        /* Constructor */
-        public function __construct(){     
-            $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
-        }
-
-        /********************* PUBLIC **********************/              
-        /**
-        * print out the calendar
-        */
-        public function show() {
-            $year  == null;             
-            $month == null;             
-            if(null==$year&&isset($_GET['year'])){     
-                $year = $_GET['year'];             
-            }else if(null==$year){     
-                $year = date("Y",time());               
-            }                       
-            if(null==$month&&isset($_GET['month'])){     
-                $month = $_GET['month'];             
-            }else if(null==$month){     
-                $month = date("m",time());             
-            }
-            $this->currentYear=$year;
-            $this->currentMonth=$month;
-            $this->daysInMonth=$this->_daysInMonth($month,$year);  
-            $content='<div id="calendar">'.
-                     '<div class="box">'.
-                     $this->_createNavi().
-                     '</div>'.
-                     '<div class="box-content">'.
-                            '<ul class="label">'.$this->_createLabels().'</ul>';   
-                            $content.='<div class="clear"></div>';     
-                            $content.='<ul class="dates">';    
-                                
-                            $weeksInMonth = $this->_weeksInMonth($month,$year);
-                            // Create weeks in a month
-                            for( $i=0; $i<$weeksInMonth; $i++ ){
-                                    
-                                //Create days in a week
-                                for($j=1;$j<=7;$j++){
-                                    $content.=$this->_showDay($i*7+$j);
-                                }
-                            }                                
-                            $content.='</ul>';                                
-                            $content.='<div class="clear"></div>';
-                        $content.='</div>';
-            $content.='</div>';
-            return $content;   
-        }
-         
-        /********************* PRIVATE **********************/ 
-        /**
-        * create the li element for ul
-        */
-        private function _showDay($cellNumber){
-            if($this->currentDay==0){
-                $firstDayOfTheWeek = date('N',strtotime($this->currentYear.'-'.$this->currentMonth.'-01'));
-                if(intval($cellNumber) == intval($firstDayOfTheWeek)){
-                    $this->currentDay=1;
-                }
-            }
-            if( ($this->currentDay!=0)&&($this->currentDay<=$this->daysInMonth) ){
-                $this->currentDate = date('Y-m-d',strtotime($this->currentYear.'-'.$this->currentMonth.'-'.($this->currentDay)));
-                $cellContent = $this->currentDay;
-                $this->currentDay++;
-            }else{
-                $this->currentDate =null;
-                $cellContent=null;
-            }
-            return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
-                    ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';
-        }
-         
-        /**
-        * create navigation
-        */
-        private function _createNavi(){             
-            $nextMonth = $this->currentMonth==12?1:intval($this->currentMonth)+1;             
-            $nextYear = $this->currentMonth==12?intval($this->currentYear)+1:$this->currentYear;
-            $preMonth = $this->currentMonth==1?12:intval($this->currentMonth)-1;
-            $preYear = $this->currentMonth==1?intval($this->currentYear)-1:$this->currentYear;
-            return
-                '<div class="header">'.
-                    '<a class="prev" href="'.$this->naviHref.'?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Prev</a>'.
-                        '<span class="title">'.date('Y M',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
-                    '<a class="next" href="'.$this->naviHref.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Next</a>'.
-                '</div>';
-        }
-             
-        /**
-        * create calendar week labels
-        */
-        private function _createLabels(){
-            $content='';
-            foreach($this->dayLabels as $index=>$label){
-                $content.='<li class="'.($label==6?'end title':'start title').' title">'.$label.'</li>';
-            }
-            return $content;
-        }
-        
-        /**
-        * calculate number of weeks in a particular month
-        */
-        private function _weeksInMonth($month=null,$year=null){
-            if( null==($year) ) {
-                $year =  date("Y",time()); 
-            }
-             
-            if(null==($month)) {
-                $month = date("m",time());
-            }
-             
-            // find number of days in this month
-            $daysInMonths = $this->_daysInMonth($month,$year);
-            $numOfweeks = ($daysInMonths%7==0?0:1) + intval($daysInMonths/7);
-            $monthEndingDay= date('N',strtotime($year.'-'.$month.'-'.$daysInMonths));
-            $monthStartDay = date('N',strtotime($year.'-'.$month.'-01'));
-            if($monthEndingDay<$monthStartDay){
-                $numOfweeks++;
-            }
-            return $numOfweeks;
-        }
-     
-        /**
-        * calculate number of days in a particular month
-        */
-        private function _daysInMonth($month=null,$year=null){
-            if(null==($year))
-                $year =  date("Y",time()); 
-            if(null==($month))
-                $month = date("m",time());
-            return date('t',strtotime($year.'-'.$month.'-01'));
-        }       
-
+    //Store div id
+    this.divId = divId;
+  
+    // Days of week, starting on Sunday
+    this.DaysOfWeek = [
+      'Sun',
+      'Mon',
+      'Tue',
+      'Wed',
+      'Thu',
+      'Fri',
+      'Sat'
+    ];
+  
+    // Months, stating on January
+    this.Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+  
+    // Set the current month, year
+    var d = new Date();
+  
+    this.currMonth = d.getMonth();
+    this.currYear = d.getFullYear();
+    this.currDay = d.getDate();
+  
+  };
+  
+  // Goes to next month
+  Cal.prototype.nextMonth = function() {
+    if ( this.currMonth == 11 ) {
+      this.currMonth = 0;
+      this.currYear = this.currYear + 1;
     }
-
-    $calendar = new Calendar(); 
-    echo $calendar->show();
-        
-
-
-?>
+    else {
+      this.currMonth = this.currMonth + 1;
+    }
+    this.showcurr();
+  };
+  
+  // Goes to previous month
+  Cal.prototype.previousMonth = function() {
+    if ( this.currMonth == 0 ) {
+      this.currMonth = 11;
+      this.currYear = this.currYear - 1;
+    }
+    else {
+      this.currMonth = this.currMonth - 1;
+    }
+    this.showcurr();
+  };
+  
+  // Show current month
+  Cal.prototype.showcurr = function() {
+    this.showMonth(this.currYear, this.currMonth);
+  };
+  
+  // Show month (year, month)
+  Cal.prototype.showMonth = function(y, m) {
+  
+    var d = new Date()
+    // First day of the week in the selected month
+    , firstDayOfMonth = new Date(y, m, 1).getDay()
+    // Last day of the selected month
+    , lastDateOfMonth =  new Date(y, m+1, 0).getDate()
+    // Last day of the previous month
+    , lastDayOfLastMonth = m == 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();
+  
+  
+    var html = '<table>';
+  
+    // Write selected month and year
+    html += '<thead><tr>';
+    html += '<td colspan="7">' + this.Months[m] + ' ' + y + '</td>';
+    html += '</tr></thead>';
+  
+  
+    // Write the header of the days of the week
+    html += '<tr class="days">';
+    for(var i=0; i < this.DaysOfWeek.length;i++) {
+      html += '<td>' + this.DaysOfWeek[i] + '</td>';
+    }
+    html += '</tr>';
+  
+    // Write the days
+    var i=1;
+    do {
+  
+      var dow = new Date(y, m, i).getDay();
+  
+      // If Sunday, start new row
+      if ( dow == 0 ) {
+        html += '<tr>';
+      }
+      // If not Sunday but first day of the month
+      // it will write the last days from the previous month
+      else if ( i == 1 ) {
+        html += '<tr>';
+        var k = lastDayOfLastMonth - firstDayOfMonth+1;
+        for(var j=0; j < firstDayOfMonth; j++) {
+          html += '<td class="not-current">' + k + '</td>';
+          k++;
+        }
+      }
+  
+      // Write the current day in the loop
+      var chk = new Date();
+      var chkY = chk.getFullYear();
+      var chkM = chk.getMonth();
+      if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
+        html += '<td class="today">' + i + '</td>';
+      } else {
+        html += '<td class="normal">' + i + '</td>';
+      }
+      // If Saturday, closes the row
+      if ( dow == 6 ) {
+        html += '</tr>';
+      }
+      // If not Saturday, but last day of the selected month
+      // it will write the next few days from the next month
+      else if ( i == lastDateOfMonth ) {
+        var k=1;
+        for(dow; dow < 6; dow++) {
+          html += '<td class="not-current">' + k + '</td>';
+          k++;
+        }
+      }
+  
+      i++;
+    }while(i <= lastDateOfMonth);
+  
+    // Closes table
+    html += '</table>';
+  
+    // Write HTML to the div
+    document.getElementById(this.divId).innerHTML = html;
+  };
+  
+  // On Load of the window
+  window.onload = function() {
+  
+    // Start calendar
+    var c = new Cal("divCal");			
+    c.showcurr();
+  
+    // Bind next and previous button clicks
+    getId('btnNext').onclick = function() {
+      c.nextMonth();
+    };
+    getId('btnPrev').onclick = function() {
+      c.previousMonth();
+    };
+  }
+  
+  // Get element by id
+  function getId(id) {
+    return document.getElementById(id);
+  }

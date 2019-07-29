@@ -1,1 +1,2 @@
 https://medium.com/@romualdasromasdakeviius/using-vue-cli-to-build-wordpress-plugin-including-hmr-1a71dfdf05c2
+https://www.codeigniter.com/user_guide/general/creating_libraries.html

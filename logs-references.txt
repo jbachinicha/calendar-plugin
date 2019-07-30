@@ -1,6 +1,21 @@
 Version #1:
 
 References: 
+WordPress
+https://codex.wordpress.org/
+https://codex.wordpress.org/Writing_a_Plugin
+https://codex.wordpress.org/Plugin_API
+https://codex.wordpress.org/Plugin_Resources
+https://codex.wordpress.org/Determining_Plugin_and_Content_Directories
+
+Developer Resources: Dashicons
+https://developer.wordpress.org/resource/dashicons/
+https://wordpress.stackexchange.com/questions/69925/how-to-use-a-wordpress-existing-admin-icon
+https://codex.wordpress.org/User:Wycks/Styling_Option_Pages
+
+Plugin Header Generator
+https://app.codegenerators.io/59510e630f79a7747d6f3ed164c299d1/
+
 Plugins
 https://wordpress.stackexchange.com/questions/48329/how-to-structure-a-plugin
 https://codex.wordpress.org/Writing_a_Plugin
@@ -16,6 +31,16 @@ https://www.inkthemes.com/learn-how-to-create-shortcodes-in-wordpress-plugin-wit
 
 WP Tabbed
 https://code.tutsplus.com/series/the-complete-guide-to-the-wordpress-settings-api--cms-624
+https://github.com/tommcfarlin/WordPress-Settings-Sandbox
+
+WordPress Settings API Tutorial with Examples
+http://qnimate.com/wordpress-settings-api-a-comprehensive-developers-guide/
+
+Database
+https://www.codexworld.com/build-event-calendar-using-jquery-ajax-php/
+
+How to Add Settings Section in WordPress Default Settings
+https://shellcreeper.com/how-to-add-settings-section-in-wordpress-default-settings/
 
 Calendar
 https://code.tutsplus.com/tutorials/how-to-build-a-beautiful-calendar-widget--net-12538

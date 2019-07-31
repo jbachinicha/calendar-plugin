@@ -1,32 +1,18 @@
-html, body {
-  height:100%;
-}
-body {
-  font-size:100%;
-  line-height:1.5;
-  font-family: "Roboto Condensed", sans-serif;
-  background:rgb(40,40,59);
-  background-image:linear-gradient(rgb(40,40,59) 0%, darken(rgb(40,40,59),12%) 100%);
-  color:#444;
-}
 
-*, *:before, *:after {
-  box-sizing:border-box;
-}
 
-.group, .group:after {
+#divCal .group, .group:after {
     content: "";
     display: table;
     clear: both;
 }
 
-img {
+#divCal img {
   max-width:100%;
   height:auto;
   vertical-align:baseline;
 }
 
-a {
+#divCal a {
   text-decoration:none;
 }
 
@@ -37,7 +23,7 @@ a {
   border:1px solid rgb(220,220,255);
   border-radius:5px;
   background:#fff;
-  
+
 }
 #divCal table {
   clear:both;
@@ -51,9 +37,13 @@ a {
   height:48px;
   text-align:center;
   vertical-align:middle;
-  border-right:1px solid rgb(220,220,255);
-  border-top:1px solid rgb(220,220,255);
+  border-right: 1px solid #0073aa;
+  border-top: 1px solid #0073aa;
   width:100% / 7;
+  font-style: inherit;
+}
+.days td {
+    font-weight: bold;
 }
 #divCal td.not-current {
   color:#c0c0c0;
@@ -62,13 +52,16 @@ a {
 #divCal td.today {
   font-weight:700;
   color:rgb(40,40,59);
-  font-size:1.5em;
+  background: #8dd6f9;
 }
 #divCal thead td {
   border:none;
-  color:rgb(40,40,59);
+  color:#fff;
   text-transform:uppercase;
   font-size:1.5em;
+  border: 1px solid #013d59;
+  border-top: 5px solid #013d59;
+  background: #0073aa;
 }
 #btnPrev {
   float:left;

@@ -107,8 +107,9 @@ function display_options(){
     }
     else
     {
+        add_settings_section("header_section", "Welcome", "display_header_options_content", "events-options");
         add_settings_field("header_cal", "", "display_static_calendar", "events-options", "header_section");
-        register_setting("header_section", "header_cal");
+        register_setting("header_section","header_cal");
     }
     
 }

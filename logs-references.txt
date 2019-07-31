@@ -38,11 +38,13 @@ http://qnimate.com/wordpress-settings-api-a-comprehensive-developers-guide/
 
 Database
 https://www.codexworld.com/build-event-calendar-using-jquery-ajax-php/
+https://codex.wordpress.org/Creating_Tables_with_Plugins
 
 How to Add Settings Section in WordPress Default Settings
 https://shellcreeper.com/how-to-add-settings-section-in-wordpress-default-settings/
 
 Calendar
+https://code-boxx.com/simple-pure-javascript-calendar-events/
 https://code.tutsplus.com/tutorials/how-to-build-a-beautiful-calendar-widget--net-12538
 https://codepen.io/ankithingarajiya/pen/jQBWEz?page=2
 https://codepen.io/SSTWebmaster/pen/QPRZwE?&page=1

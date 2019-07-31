@@ -121,13 +121,9 @@ function display_documentation_content(){echo "test.";}
 /* Display functions */
 function display_static_calendar(){
     ?>
-        <div id="header_cal" name="header_cal">            
-            <div class="calendar-wrapper">
-                    <button id="btnPrev" type="button">Prev</button>
-                    <button id="btnNext" type="button">Next</button>
-                <div id="divCal"></div>
-            </div>
-        </div>
+
+    
+    
     <?php
 }
 function display_shortcode_list(){
@@ -144,7 +140,7 @@ function display_documentation_txt(){
     ?>
         <div id="documentation_code">
             <ul class="bullet">
-                <li><strong>» <a href="https://github.com/jbachinicha/calendar-plugin" target="_blank">GitHut</a></strong></li>
+                <li><strong>» <a href="https://github.com/jbachinicha/calendar-plugin" target="_blank">GitHub</a></strong></li>
                 <li><strong>» <a href="https://trello.com/b/6ORw2K8V/tutorial-board-start-here" target="_blank">Trello</a></strong></li>
             </ul>
         </div>
@@ -162,16 +158,6 @@ function display_copyright_txt(){
 
             <strong>&copy; Copyright 2019</strong>
         </div>
-    <?php
-}
-function display_logo_form_element(){
-    ?>
-        <input type="text" name="header_logo" id="header_logo" value="<?php echo get_option('header_logo'); ?>" />
-    <?php
-}
-function display_settings_form_element(){
-    ?>
-        <input type="text" name="advertising_code" id="advertising_code" value="<?php echo get_option('advertising_code'); ?>" />
     <?php
 }
 

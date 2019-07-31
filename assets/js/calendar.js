@@ -1,19 +1,9 @@
 var Cal = function(divId) {
 
     //Store div id
-    this.divId = divId;
-  
+    this.divId = divId;  
     // Days of week, starting on Sunday
-    this.DaysOfWeek = [
-      'Sun',
-      'Mon',
-      'Tue',
-      'Wed',
-      'Thu',
-      'Fri',
-      'Sat'
-    ];
-  
+    this.DaysOfWeek = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
     // Months, stating on January
     this.Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
   
@@ -65,8 +55,7 @@ var Cal = function(divId) {
     , lastDateOfMonth =  new Date(y, m+1, 0).getDate()
     // Last day of the previous month
     , lastDayOfLastMonth = m == 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();
-  
-  
+    
     var html = '<table>';
   
     // Write selected month and year
@@ -108,9 +97,9 @@ var Cal = function(divId) {
       var chkY = chk.getFullYear();
       var chkM = chk.getMonth();
       if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
-        html += '<td class="today">' + i + '</td>';
+        html += '<td class="today hvr-grow">' + i + '</td>';
       } else {
-        html += '<td class="normal">' + i + '</td>';
+        html += '<td class="normal hvr-grow">' + i + '</td>';
       }
       // If Saturday, closes the row
       if ( dow == 6 ) {

@@ -3,7 +3,7 @@
  * Plugin Name: Events APPS Calendar
  * Plugin URI:  
  * Description: Basic WordPress Plugin Header Comment
- * Version:     1.3.0
+ * Version:     1.3.1
  * Author:      The Programmers
  * Author URI:  
  * Text Domain: 

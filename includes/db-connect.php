@@ -2,7 +2,31 @@
 if ( !defined('ABSPATH') )
 define('ABSPATH', dirname(__FILE__) . '/');
 
-require_once(ABSPATH . 'wp-config.php');
+$db_name = $wpdb->prefix . 'events_apps_calendar';
+ 
+// function to create the DB / Options / Defaults					
+function your_plugin_options_install() {
+   	global $wpdb;
+  	global $db_name;
+ 
+	// create the ECPT metabox database table
+	if($wpdb->get_var("show tables like '$db_name'") != $db_name) 
+	{
+		$sql = "CREATE TABLE " . $db_name . " (
+		`id` INT NOT NULL AUTO_INCREMENT,
+		`title` VARCHAR(255) NOT NULL,
+		`date` DATE NOT NULL,
+		`description` VARCHAR(255) NOT NULL,
+		UNIQUE KEY id (id)
+		);";
+ 
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		dbDelta($sql);
+	}
+ 
+}
+// run the install scripts upon plugin activation
+register_activation_hook(__FILE__,'your_plugin_options_install');
 
 // function jal_install () {
 // 	global $wpdb;

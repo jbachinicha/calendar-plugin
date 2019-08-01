@@ -1,4 +1,4 @@
-var Cal = function(divId) {
+var Calendar = function(divId) {
 
     //Store div id
     this.divId = divId;  
@@ -8,16 +8,21 @@ var Cal = function(divId) {
     this.Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
   
     // Set the current month, year
-    var d = new Date();
+    var date = new Date();
   
-    this.currMonth = d.getMonth();
-    this.currYear = d.getFullYear();
-    this.currDay = d.getDate();
+    this.currMonth = date.getMonth();
+    this.currYear = date.getFullYear();
+    this.currDay = date.getDate();
   
   };
+
+  //
+  Calendar.prototype.test = function(){
+    
+  }
   
   // Goes to next month
-  Cal.prototype.nextMonth = function() {
+  Calendar.prototype.nextMonth = function() {
     if ( this.currMonth == 11 ) {
       this.currMonth = 0;
       this.currYear = this.currYear + 1;
@@ -29,7 +34,7 @@ var Cal = function(divId) {
   };
   
   // Goes to previous month
-  Cal.prototype.previousMonth = function() {
+  Calendar.prototype.previousMonth = function() {
     if ( this.currMonth == 0 ) {
       this.currMonth = 11;
       this.currYear = this.currYear - 1;
@@ -41,12 +46,12 @@ var Cal = function(divId) {
   };
   
   // Show current month
-  Cal.prototype.showcurr = function() {
+  Calendar.prototype.showcurr = function() {
     this.showMonth(this.currYear, this.currMonth);
   };
   
   // Show month (year, month)
-  Cal.prototype.showMonth = function(y, m) {
+  Calendar.prototype.showMonth = function(y, m) {
   
     var d = new Date()
     // First day of the week in the selected month
@@ -59,7 +64,7 @@ var Cal = function(divId) {
     var html = '<table>';
   
     // Write selected month and year
-    html += '<thead><tr>';
+    html += '<thead><tr class="month">';
     html += '<td colspan="7">' + this.Months[m] + ' ' + y + '</td>';
     html += '</tr></thead>';
   
@@ -73,12 +78,11 @@ var Cal = function(divId) {
   
     // Write the days
     var i=1;
-    do {
-  
-      var dow = new Date(y, m, i).getDay();
+    do {  
+      var days = new Date(y, m, i).getDay();
   
       // If Sunday, start new row
-      if ( dow == 0 ) {
+      if ( days == 0 ) {
         html += '<tr>';
       }
       // If not Sunday but first day of the month
@@ -97,19 +101,19 @@ var Cal = function(divId) {
       var chkY = chk.getFullYear();
       var chkM = chk.getMonth();
       if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
-        html += '<td class="today hvr-grow">' + i + '</td>';
+        html += '<td class="today">' + i + '</td>';
       } else {
-        html += '<td class="normal hvr-grow">' + i + '</td>';
+        html += '<td class="normal">' + i + '</td>';
       }
       // If Saturday, closes the row
-      if ( dow == 6 ) {
+      if ( days == 6 ) {
         html += '</tr>';
       }
       // If not Saturday, but last day of the selected month
       // it will write the next few days from the next month
       else if ( i == lastDateOfMonth ) {
         var k=1;
-        for(dow; dow < 6; dow++) {
+        for(days; days < 6; days++) {
           html += '<td class="not-current">' + k + '</td>';
           k++;
         }
@@ -128,16 +132,16 @@ var Cal = function(divId) {
   // On Load of the window
   window.onload = function() {
   
-    // Start calendar
-    var c = new Cal("divCal");			
-    c.showcurr();
+    // Start Calendarendar
+    var cal = new Calendar("divCalendar");			
+    cal.showcurr();
   
     // Bind next and previous button clicks
     getId('btnNext').onclick = function() {
-      c.nextMonth();
+      cal.nextMonth();
     };
     getId('btnPrev').onclick = function() {
-      c.previousMonth();
+      cal.previousMonth();
     };
   }
   

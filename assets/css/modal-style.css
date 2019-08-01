@@ -1,0 +1,77 @@
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    z-index: 99999999; /* Sit on top */
+    overflow: auto; /* Enable scroll if needed */
+} 
+
+/* Modal Content */
+#myModal .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    padding: 0;
+    border: 2px solid #013d59;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+} 
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+#myModal .modal-close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#myModal .modal-close:hover,
+#myModal .modal-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#myModal .modal-header {
+    padding: 2px 16px;
+    background: url(images/footer.png) no-repeat center top #0073aa;
+    color: white;
+}
+
+#myModal .modal-body {padding: 2px 16px;}
+#myModal .modal-body  .container{height: 100%;}
+
+#myModal .modal-footer {
+    padding: 2px 16px;
+    background: url(images/footer.png) no-repeat center top #0073aa;
+    color: white;
+}
+
+@media only screen and (max-width : 1000px) {
+    #myModal .modal-content{width: 60%;}
+}
+
+@media only screen and (max-width : 800px) {
+    #myModal .modal-content{width: 80%;}
+}
+
+@media only screen and (max-width : 1000px) {
+    #myModal .modal-content{width: 90%;}
+}

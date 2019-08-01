@@ -57,7 +57,7 @@
 #divCalendar td.not-current {
   color:#c0c0c0;
 }
-#divCalendar td.normal {}
+#divCalendar td.normal {cursor: pointer;}
 #divCalendar td.today {
   font-weight:700;
   color: #28283b;

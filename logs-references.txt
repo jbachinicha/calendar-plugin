@@ -52,3 +52,14 @@ https://codepen.io/collection/wvhHK/#
 https://codepen.io/xmark/pen/WQaXdv
 https://codepen.io/snypelife/pen/LtBam
 https://codepen.io/ciprianionescu/pen/JYPwwL
+https://codepen.io/peanav/pen/ulkof
+
+https://mindfusion.eu/blog/interactive-calendar-with-events-in-javascript/
+https://mindfusion.eu/samples/javascript/scheduler/GoogleCalendar/GoogleSchedule.html
+
+https://mindfusion.eu/javascript-scheduler.html
+
+*******************************************************************************************************
+
+JS
+https://momentjs.com/

@@ -1,7 +1,7 @@
 var Calendar = function(divId) {
 
     //Store div id
-    this.divId = divId;  
+    this.divId = divId;
     // Days of week, starting on Sunday
     this.DaysOfWeek = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
     // Months, stating on January
@@ -15,11 +15,6 @@ var Calendar = function(divId) {
     this.currDay = date.getDate();
   
   };
-
-  //
-  Calendar.prototype.test = function(){
-    
-  }
   
   // Goes to next month
   Calendar.prototype.nextMonth = function() {
@@ -43,7 +38,7 @@ var Calendar = function(divId) {
       this.currMonth = this.currMonth - 1;
     }
     this.showcurr();
-  };
+  };  
   
   // Show current month
   Calendar.prototype.showcurr = function() {
@@ -101,9 +96,9 @@ var Calendar = function(divId) {
       var chkY = chk.getFullYear();
       var chkM = chk.getMonth();
       if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
-        html += '<td class="today">' + i + '</td>';
+        html += '<td id="add_event_today" class="today">' + i + '</td>';
       } else {
-        html += '<td class="normal">' + i + '</td>';
+        html += '<td id="add_event" class="normal">' + i + '</td>';
       }
       // If Saturday, closes the row
       if ( days == 6 ) {
@@ -128,14 +123,30 @@ var Calendar = function(divId) {
     // Write HTML to the div
     document.getElementById(this.divId).innerHTML = html;
   };
-  
+
   // On Load of the window
   window.onload = function() {
   
     // Start Calendarendar
     var cal = new Calendar("divCalendar");			
     cal.showcurr();
-  
+
+	  var modal = document.getElementById('myModal');
+    // var btn = document.getElementsByClassName("normal");
+    var span = document.getElementsByClassName("modal-close")[0];
+
+    // When the user clicks the button, open the modal 
+    // btn.onclick = function() {
+    //   modal.style.display = "block";
+    // }
+    $('.normal').click(function () {    
+      $(this).attr('class');
+        modal.style.display = "block";
+    });
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+      
     // Bind next and previous button clicks
     getId('btnNext').onclick = function() {
       cal.nextMonth();

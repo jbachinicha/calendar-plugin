@@ -59,6 +59,12 @@ https://mindfusion.eu/samples/javascript/scheduler/GoogleCalendar/GoogleSchedule
 
 https://mindfusion.eu/javascript-scheduler.html
 
+
+http://demos.codexworld.com/build-event-calendar-using-jquery-ajax-php/
+https://www.codexworld.com/build-event-calendar-using-jquery-ajax-php/
+https://www.codexworld.com/add-event-to-calendar-using-jquery-ajax-php/
+https://www.google.com/search?client=firefox-b-d&ei=25dHXbrXNb3P0PEP1e2qqAo&q=create+a+dynamic+calendar+in+php&oq=create+a+dynamic+calendar+in+php&gs_l=psy-ab.3..0j0i22i30l2.77904.78075..78260...0.0..0.294.294.2-1......0....1..gws-wiz.......0i71.WWP0iOnnfC8&ved=0ahUKEwj6sLvn2urjAhW9JzQIHdW2CqUQ4dUDCAo&uact=5
+
 *******************************************************************************************************
 
 JS

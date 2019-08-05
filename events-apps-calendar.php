@@ -1,4 +1,6 @@
 <?php
+if ( !defined('ABSPATH') )
+define('ABSPATH', dirname(__FILE__) . '/');
 /**
  * Plugin Name: Events APPS Calendar
  * Plugin URI:  
@@ -15,26 +17,33 @@
  * Define the plugin version
  */
 
-if (!defined('ABSPATH')) {
-	header('Status: 403 Forbidden');
-	header('HTTP/1.1 403 Forbidden');
-	die();
-}
-
+register_activation_hook( __FILE__, 'eventsCalendar_create_tables' );
 /********** INCLUDES **********/
 
-// Includes
-include_once 'includes/db-connect.php';
-include 'includes/functions.php';
+//Controller
+include_once 'controller/connect.php';
+include_once 'controller/calendar.php';
 
 // Assets
 include 'assets/asset_controller.php';
 
+// Includes
+include 'includes/wp_event_calendar_menu.php';
+
+
 
 /********** Display **********/
 function display_events_apps_calendar(){
-    include_once 'view/view-calendar.html';
-    // include_once 'view/view-calendar2.html';
+    // include_once 'view/view-calendar.html';
+	// include_once 'view/view-calendar2.html';
+	// echo '<div class="calendar-wrapper">
+	// 		<button id="btnPrev" type="button">Prev</button>
+	// 		<button id="btnNext" type="button">Next</button>
+	// 		<div id="divCalendar"></div>
+	// 	</div>';
+	echo '<div id="calendar_div">'.
+			getCalender();
+		'</div>';
 }
 add_shortcode('apps_cal_show_static_calendar', 'display_events_apps_calendar');
 ?>

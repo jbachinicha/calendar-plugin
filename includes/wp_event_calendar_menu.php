@@ -1,9 +1,6 @@
 <?php
-if (!defined('ABSPATH')) {
-	header('Status: 403 Forbidden');
-	header('HTTP/1.1 403 Forbidden');
-	die();
-}
+if ( !defined('ABSPATH') )
+define('ABSPATH', dirname(__FILE__) . '/');
 
 /*WordPress Menus API.*/
 function add_new_menu_items()

@@ -36,7 +36,7 @@ function getCalender($year = '', $month = ''){
 ?> 
     <div class="calendar-wrap"> 
         <div class="cal-nav"> 
-            <a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>');">&laquo;</a> 
+            <a id="beforeNav" href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>');">&laquo;</a> 
             <select class="month_dropdown"><?php echo getAllMonths($dateMonth); ?></select> 
             <select class="year_dropdown"><?php echo getYearList($dateYear); ?></select> 
             <a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' + 1 Month')); ?>','<?php echo date("m",strtotime($date.' + 1 Month')); ?>');">&raquo;</a> 
@@ -73,11 +73,11 @@ function getCalender($year = '', $month = ''){
                         // Include the database config file 
                         // include 'connect.php';
                         include( plugin_dir_path( __DIR__ ) . '\controller\connect.php' );
-                         
+
                         // Get number of events based on the current date 
-                        $result = $wpdb->get_results("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1"); 
-                        $eventNum = $result->num_rows; 
-                         
+                        $result = $wpdb->get_results("SELECT title FROM $tableName WHERE date = '".$currentDate."' AND status = 1"); 
+                        $eventNum = $result->num_rows;
+                        
                         // Define date cell color 
                         if(strtotime($currentDate) == strtotime(date("Y-m-d"))){ 
                             echo '<li date="'.$currentDate.'" class="grey date_cell">'; 
@@ -86,6 +86,14 @@ function getCalender($year = '', $month = ''){
                         }else{ 
                             echo '<li date="'.$currentDate.'" class="date_cell">'; 
                         } 
+                        
+                        if($result) {                              
+                            foreach ($result as $r){
+                                echo $r->title;
+                            }
+                        } else {
+
+                        }
                          
                         // Date cell 
                         echo '<span>'; 
@@ -112,29 +120,29 @@ function getCalender($year = '', $month = ''){
     </div> 
  
     <script> 
-        function getCalendar(target_div, year, month){ 
-            $.ajax({ 
-                type:'POST', 
-                url:'/calendar.php', 
-                data:'func=getCalender&year='+year+'&month='+month, 
-                success:function(html){ 
-                    $('#'+target_div).html(html); 
-                } 
-            }); 
-        } 
+        // function getCalendar(target_div, year, month){ 
+        //     $.ajax({ 
+        //         type:'POST', 
+        //         url:'/calendar.php', 
+        //         data:'func=getCalender&year='+year+'&month='+month, 
+        //         success:function(html){ 
+        //             $('#'+target_div).html(html); 
+        //         } 
+        //     }); 
+        // } 
          
-        function getEvents(date){
-            $.ajax({
-                type:'POST',
-                url:'/calendar.php',
-                data:'func=getEvents&date='+date,
-                success:function(html){
-                    $('#event_list').html(html);
-                    $('#event_add').slideUp('slow');
-                    $('#event_list').slideDown('slow');
-                }
-            });
-        }
+        // function getEvents(date){
+        //     $.ajax({
+        //         type:'POST',
+        //         url:'calendar.php',
+        //         data:'func=getEvents&date='+date,
+        //         success:function(html){
+        //             $('#event_list').html(html);
+        //             $('#event_add').slideUp('slow');
+        //             $('#event_list').slideDown('slow');
+        //         }
+        //     });
+        // }
          
         //For Add Event
         function addEvent(date){
@@ -144,27 +152,27 @@ function getCalender($year = '', $month = ''){
             $('#event_add').slideDown('slow');
         }
         //For Add Event
-        jQuery(document).ready(function(){
-            $('#addEventBtn').on('click',function(){
-                var date = $('#eventDate').val();
-                var title = $('#eventTitle').val();
-                $.ajax({
-                    type:'POST',
-                    url:'/calendar.php',
-                    data:'func=addEvent&date='+date+'&title='+title,
-                    success:function(msg){
-                        if(msg == 'ok'){
-                            var dateSplit = date.split("-");
-                            $('#eventTitle').val('');
-                            alert('Event Created Successfully.');
-                            getCalendar('calendar_div',dateSplit[0],dateSplit[1]);
-                     }else{
-                            alert('Some problem occurred, please try again.');
-                        }
-                    }
-                });
-            });
-        });
+        // jQuery(document).ready(function(){
+        //     $('#addEventBtn').on('click',function(){
+        //         var date = $('#eventDate').val();
+        //         var title = $('#eventTitle').val();
+        //         $.ajax({
+        //             type:'POST',
+        //             url:'../../controller/calendar.php', 
+        //             data:'func=addEvent&date='+date+'&title='+title,
+        //             success:function(msg){
+        //                 if(msg == 'ok'){
+        //                     var dateSplit = date.split("-");
+        //                     $('#eventTitle').val('');
+        //                     alert('Event Created Successfully.');
+        //                     getCalendar('calendar_div',dateSplit[0],dateSplit[1]);
+        //              }else{
+        //                     alert('Some problem occurred, please try again.');
+        //                 }
+        //             }
+        //         });
+        //     });
+        // });
 
        jQuery(document).ready(function(){
             $('.date_cell').mouseenter(function(){
@@ -229,7 +237,7 @@ function getEvents($date = ''){
     $date = $date?$date:date("Y-m-d"); 
      
     // Fetch events based on the specific date 
-    $result = $wpdb->get_results("SELECT title FROM events WHERE date = '".$date."' AND status = 1"); 
+    $result = $wpdb->get_results("SELECT title FROM '.$tableName.' WHERE date = '".$date."' AND status = 1"); 
     if($result->num_rows > 0){ 
         $eventListHTML = '<h2>Events on '.date("l, d M Y",strtotime($date)).'</h2>'; 
         $eventListHTML .= '<ul>'; 
@@ -252,7 +260,7 @@ function addEvent($date,$title){
 
     $currentDate = date("Y-m-d H:i:s");
     //Insert the event data into database
-    $insert = $wpdb->get_results("INSERT INTO events (title,date,created,modified) VALUES ('".$title."','".$date."','".$currentDate."','".$currentDate."')");
+    $insert = $wpdb->get_results("INSERT INTO '.$tableName.' (title,date,created,modified) VALUES ('".$title."','".$date."','".$currentDate."','".$currentDate."')");
     if($insert){
         echo 'ok';
     }else{

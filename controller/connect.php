@@ -6,10 +6,12 @@ define('ABSPATH', dirname(__FILE__) . '/');
     
     global $wpdb;
     $charset_collate = $wpdb->get_charset_collate();
+    $tableName = $wpdb->prefix . "events_calendar";
+    // $table_name = $wpdb->prefix . "liveshoutbox";
 
     // $db = new mysqli($servername, $username, $password, $dbName); 
 
-    $sql = "CREATE TABLE `{$wpdb->base_prefix}events_calendar` (
+    $sql = "CREATE TABLE `$tableName` (
         `id` int NOT NULL AUTO_INCREMENT,
         `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
         `date` date NOT NULL,

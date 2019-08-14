@@ -29,26 +29,37 @@ function getEvents(date){
 //     $('#event_list').slideUp('slow');
 //     $('#event_add').slideDown('slow');
 // }
+
 //For Add Event
 jQuery(document).ready(function(){
-    $('#addEventBtn').on('click',function(){
-        var date = $('#eventDate').val();
-        var title = $('#eventTitle').val();
-        $.ajax({
-            type:'POST',
-            url:'controller/calendar.php',
-            data:'func=addEvent&date='+date+'&title='+title,
-            success:function(msg){
-                if(msg == 'ok'){
-                    var dateSplit = date.split("-");
-                    $('#eventTitle').val('');
-                    alert('Event Created Successfully.');
-                    getCalendar('calendar_div',dateSplit[0],dateSplit[1]);
-             }else{
-                    alert('Some problem occurred, please try again.');
-                }
-            }
-        });
+    jQuery('#addEventBtn').on('click',function(){
+        var date = jQuery('#eventDate').val();
+        var title = jQuery('#eventTitle').val();
+        // jQuery.ajax({
+        //     type:'POST',
+        //     url:'./postEvent.php',
+        //     dataType: 'json',
+        //     data:'func=addEvent&date='+date+'&title='+title,
+        //     data: JSON.stringify({
+        //         post: 'addEvent',
+        //         date: date,
+        //         title: title
+        //     }),
+        //     // data: date,
+        //     success:function(msg){
+        //         if(msg == 'ok'){
+        //             var dateSplit = date.split("-");
+        //             $('#eventTitle').val('');
+        //             alert('Event Created Successfully.');
+        //             getCalendar('calendar_div',dateSplit[0],dateSplit[1]);
+        //      }else{
+        //             alert('Some problem occurred, please try again.');
+        //         }
+        //     },
+        //     error: function(msg) {
+        //         console.log(msg);
+        //     }
+        // });
     });
 });
 

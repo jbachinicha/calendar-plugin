@@ -28,7 +28,7 @@ define('ABSPATH', dirname(__FILE__) . '/');
 
 //Controller
 include_once 'controller/connect.php';
-include 'controller/calendar.php';
+include 'controller/Calendar.php';
 
 // Assets
 include 'assets/asset_controller.php';

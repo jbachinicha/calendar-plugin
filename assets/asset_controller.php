@@ -15,6 +15,8 @@ function cal_style(){
 }
 
 function cal_scripts(){
-    // wp_register_script( 'custom-script', plugins_url( '/js/jquery-3.3.1.min.js', __FILE__ ) );
-        wp_enqueue_script( 'custom-script' );
+    wp_register_script( 'custom-script', plugins_url( '/js/jquery-3.3.1.min.js', __FILE__ ) );
+    wp_register_script( 'calendar-ajax', plugins_url( '../controller/calendar-ajax.min.js', __FILE__ ) );
+    wp_enqueue_script( 'custom-script' );
+    wp_enqueue_script( 'calendar-ajax' );
 }

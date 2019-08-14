@@ -2,25 +2,7 @@
 if ( !defined('ABSPATH') )
 define('ABSPATH', dirname(__FILE__) . '/');
 
-/* 
- * Load function based on the Ajax request 
- */ 
-if(isset($_POST['func']) && !empty($_POST['func'])){ 
-    switch($_POST['func']){ 
-        case 'getCalender': 
-            getCalender($_POST['year'],$_POST['month']); 
-            break; 
-        case 'getEvents': 
-            getEvents($_POST['date']); 
-            break; 
-        //For Add Event
-        case 'addEvent':
-            addEvent($_POST['date'],$_POST['title']);
-            break;
-        default: 
-            break; 
-    } 
-} 
+
  
 /* 
  * Generate event calendar in HTML format 
@@ -63,8 +45,7 @@ function getCalender($year = '', $month = ''){
         <div class="calendar-dates"> 
             <ul> 
             <?php  
-                $dayCount = 1; 
-                $eventNum = 0; 
+                $dayCount = 1;
                 for($cb=1;$cb<=$boxDisplay;$cb++){ 
                     if(($cb >= $currentMonthFirstDay+1 || $currentMonthFirstDay == 7) && $cb <= ($totalDaysOfMonthDisplay)){ 
                         // Current date 
@@ -76,18 +57,20 @@ function getCalender($year = '', $month = ''){
 
                         // Get number of events based on the current date 
                         $result = $wpdb->get_results("SELECT title FROM $tableName WHERE date = '".$currentDate."' AND status = 1"); 
-                        $eventNum = $result->num_rows;
+                        $eventNum = $wpdb->get_var("SELECT COUNT(*) FROM $tableName WHERE date = '".$currentDate."' AND status = 1");
                         
                         // Define date cell color 
-                        if(strtotime($currentDate) == strtotime(date("Y-m-d"))){ 
+                        if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
                             echo '<li date="'.$currentDate.'" class="grey date_cell">'; 
                         }elseif($eventNum > 0){ 
                             echo '<li date="'.$currentDate.'" class="light_sky date_cell">'; 
                         }else{ 
                             echo '<li date="'.$currentDate.'" class="date_cell">'; 
-                        } 
+                        }
+                        // echo $eventNum;
                         
-                        if($result) {                              
+                        if($result){
+                            
                             foreach ($result as $r){
                                 echo $r->title;
                             }
@@ -144,7 +127,7 @@ function getCalender($year = '', $month = ''){
         //     });
         // }
          
-        //For Add Event
+        // For Add Event
         function addEvent(date){
             $('#eventDate').val(date);
             $('#eventDateView').html(date);
@@ -253,7 +236,8 @@ function getEvents($date = ''){
 /*
  * Add event to date
  */
-function addEvent($date,$title){
+function postEvent($date,$title){
+    echo 'posting...';
     //Include db configuration file
     // include 'connect.php';
     include( plugin_dir_path( __DIR__ ) . '\controller\connect.php' );

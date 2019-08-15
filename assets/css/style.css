@@ -35,20 +35,25 @@ body{
 .calendar-wrap select{
 	color: #444444;
 	font-size:17px;
+	-webkit-appearance: menulist;
+	appearance: menulist;
 }
 .calendar-days{
 	width:100%;
 	float:left;
 	margin-top:20px;
+	background: #2f73b5;
 }
 .calendar-days ul{
 	padding:0;
 	list-style-type:none;
+	font-weight: bold;
+	color: #fff;
 }
 .calendar-days ul li{
 	float:left;
 	display:block;
-	width:99px;
+	width: 99.7px;
 	border-right:1px solid #fff;
 	text-align:center;
 	font-size:14px;
@@ -58,12 +63,16 @@ body{
 	margin:0;
 	padding:0;
 }
+.calendar-days ul li:last-child{
+	border-right:0;
+}
 .calendar-dates{
 	width:100%;
-	margin-top:20px;
+	margin: 20px auto;
 	float:left;
 	border-left:1px solid #ccc;
 	border-bottom:1px solid #ccc;
+	border-right:1px solid #ccc;
 }
 .calendar-dates ul{
 	margin:0;
@@ -72,7 +81,7 @@ body{
 }
 .calendar-dates ul li{
 	float:left;
-	width:99px;
+	width:99.7px;
 	height:80px;
 	text-align:center;
 	border-top:1px solid #ccc;
@@ -84,11 +93,19 @@ body{
 	padding:0;
 	position:relative;
 }
+.calendar-dates ul li:first-child, .calendar-dates ul li:nth-of-type(8), .calendar-dates ul li:nth-of-type(15), .calendar-dates ul li:nth-of-type(22), .calendar-dates ul li:nth-of-type(29){
+	color: #ff0000;
+}
+.calendar-dates ul li:nth-of-type(7n+0){
+	border-right:0;
+	color: #2f73b5;
+}
 .calendar-dates ul li span{
 	margin-top:7px;
 	float:left;
 	margin-left:7px;
 	text-align:center;
+	font-weight: bold;
 }
 
 .grey{
@@ -113,11 +130,10 @@ body{
 	z-index: 9999;
 	top: -115px;
 	left:-55px;
-    /* background: transparent url(../images/info-popup.png) no-repeat top left; */
-    background: #fff;
-    color: #666 !important;
-    border-radius: 15px;
-    border:1px solid #000;
+  background: #fff;
+  color: #666 !important;
+  border-radius: 5px;
+  border:1px solid #000;
 }
 .events_window {
 	overflow: hidden;
@@ -140,6 +156,24 @@ body{
 	font-size: 16px;
 	margin-left:9px;
 	margin-right:14px
+}
+.date_window a {
+    text-decoration: none;
+    display: block;
+    width: 110px;
+    height: 27px;
+    margin: 0 auto;
+    background: #2f73b5;
+    line-height: 27px;
+    color: #fff;
+    font-weight: normal;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #4999e6;
+}
+.date_window a:hover {
+    color: #fff;
+    opacity: 0.7;
 }
 .popup_event {
 	margin-bottom: 2px;

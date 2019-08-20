@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
 body{
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 .none{
 	display:none;
@@ -32,17 +33,53 @@ body{
 .calendar-wrap .cal-nav a:last-child{
 	float: right;
 }
+
+#event_add{}
+	.addsection input[type="text"] {
+    display: inline-block;
+    width: 230.6px;
+    height: 39px;
+    vertical-align: top;
+    border: 1px solid #2f73b5;
+    padding: 0 10px;
+		font-family: 'Roboto', sans-serif;
+		margin: 5px auto;
+		border-radius: 3px;
+}
+.addsection textarea {
+    width: 100%;
+    border: 1px solid #2f73b5;
+    padding: 0 10px;
+    font-family: 'Roboto',sans-serif;
+    resize: none;
+		border-radius: 3px;
+}
+.addsection .addBtn{
+	width: 200px;
+	height: 36px;
+	background: #2f73b5;
+	line-height: 27px;
+	color: #fff;
+	font-weight: normal;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #4999e6;
+}
+
 .calendar-wrap select{
 	color: #444444;
 	font-size:17px;
 	-webkit-appearance: menulist;
 	appearance: menulist;
+	font-family: 'Roboto', sans-serif
+
 }
 .calendar-days{
 	width:100%;
 	float:left;
 	margin-top:20px;
 	background: #2f73b5;
+	font-family: 'Roboto', sans-serif;
 }
 .calendar-days ul{
 	padding:0;
@@ -78,6 +115,7 @@ body{
 	margin:0;
 	padding:0;
 	list-style-type:none;
+	font-family: 'Roboto', sans-serif;
 }
 .calendar-dates ul li{
 	float:left;

@@ -27,14 +27,15 @@ function getCalender($year = '', $month = ''){
         <!--For Add Event-->
         <div id="event_add" class="none addsection">
             <p>Add Event on <span id="eventDateView"></span></p>
-          <form action="" method="post">
+
             <input type="text" id="eventTitle" value="" placeholder="Event Title..." required/>
             <input type="text" id="eventFromTime" value="" placeholder="From..."required/>
             <input type="text" id="eventToTime" value="" placeholder="To..."required/>
             <textarea id="eventDescription" value="" placeholder="Description..."/></textarea>
             <input type="hidden" id="eventDate" value=""/>
             <input type="submit" id="addEventBtn" class="addBtn" value="Add"/>
-          </form>
+
+          <button onclick="cancelEventBtn()" class="cancelBtn">Cancel</button>
         </div>
         <div class="calendar-days">
             <ul>
@@ -141,6 +142,9 @@ function getCalender($year = '', $month = ''){
             $('#event_list').slideUp('slow');
             $('#event_add').slideDown('slow');
         }
+        function cancelEventBtn() {
+          $('#event_add').slideUp('slow');
+        }
         //For Add Event
         // jQuery(document).ready(function(){
         //     $('#addEventBtn').on('click',function(){
@@ -167,11 +171,11 @@ function getCalender($year = '', $month = ''){
        jQuery(document).ready(function(){
             $('.date_cell').mouseenter(function(){
                 date = $(this).attr('date');
-                $(".date_popup_wrap").fadeOut();
-                $("#date_popup_"+date).fadeIn();
+                //$(".date_popup_wrap").fadeOut();
+                $("#date_popup_"+date).css("display", "block");
             });
             $('.date_cell').mouseleave(function(){
-                $(".date_popup_wrap").fadeOut();
+                $(".date_popup_wrap").css("display", "none");
             });
             $('.month_dropdown').on('change',function(){
                 getCalendar('calendar_div',$('.year_dropdown').val(),$('.month_dropdown').val());
